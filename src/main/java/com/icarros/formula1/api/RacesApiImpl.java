@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @RestController
 @Api(tags = {"races",})
-class RacesApiImpl implements RacesApi {
+public class RacesApiImpl implements RacesApi {
 
     @Autowired
     private AllDataApiImpl allDataApi;

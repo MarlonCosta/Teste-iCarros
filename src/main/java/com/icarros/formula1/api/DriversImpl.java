@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @RestController
 @Api(tags = {"drivers",})
-class DriversImpl implements DriversApi {
+public class DriversImpl implements DriversApi {
 
     @Autowired
     private RacesApiImpl racesApi;
