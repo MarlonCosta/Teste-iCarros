@@ -48,6 +48,56 @@ paths:
         '500':
           description: Server Error
 
+  /races/{round}:
+    get:
+      tags:
+        - races
+      summary: Returns a single race, searching by round
+      operationId: getRaceByRound
+      description: |
+        Returns a single race, searching by round
+      parameters:
+        - in: path
+          name: round
+          type: integer
+          description: Round of the race
+          required: true
+      responses:
+        '200':
+          description: Sucessful Request
+          schema:
+            $ref: '#/definitions/Race'
+        '400':
+          description: Bad Input Parameter
+        '500':
+          description: Server Error
+
+  /races/{round}/podium:
+    get:
+      tags:
+        - races
+      summary: Returns the three best drivers of a given race
+      operationId: getRacePodium
+      description: |
+        Returns the three best drivers of a given race
+      parameters:
+        - in: path
+          name: round
+          type: integer
+          description: Round of the race
+          required: true
+      responses:
+        '200':
+          description: Sucessful Request
+          schema:
+            type: array
+            items: 
+              $ref: '#/definitions/Result'
+        '400':
+          description: Bad Input Parameter
+        '500':
+          description: Server Error
+
   /drivers:
     get:
       tags:
@@ -68,9 +118,9 @@ paths:
           allowEmptyValue: false
           required: false
         - in: query
-          name: code
-          type: string
+          name: constructor
           allowEmptyValue: false
+          type: string
           required: false
       responses:
         '200':
@@ -83,28 +133,29 @@ paths:
           description: Bad Input Parameter
         '500':
           description: Server Error
+
   /drivers/{driverId}:
     get:
       tags:
         - drivers
-      summary: Searches for a driver by Id
+      summary: Searches for a driver by his Id
       operationId: getDriverById
       description: |
-        By passing in the appropriate options, you can search for a driver
+        By passing the driverId in the path, you can search for a specific driver
       parameters:
         - in: path
           required: true
           name: driverId
-          type: integer
+          type: string
       responses:
         '200':
-          description: search results matching criteria
+          description: Successful Request
           schema:
             $ref: '#/definitions/Driver'
         '400':
-          description: bad input parameter
+          description: Bad Request
         '500':
-          description: server error
+          description: Server Error
 
   /constructors:
     get:
@@ -153,14 +204,13 @@ paths:
           type: integer
       responses:
         '200':
-          description: search results matching criteria
+          description: Successful Request
           schema:
             $ref: '#/definitions/Constructor'
         '400':
-          description: bad input parameter
+          description: Bad Request
         '500':
-          description: server error
-
+          description: Server Error
 
 definitions:
   F1Resource:
@@ -230,52 +280,55 @@ definitions:
       Results:
         type: array
         items:
-          type: object
-          properties:
-            number:
-              type: string
-            position:
-              type: string
-            positionText:
-              type: string
-            points:
-              type: string
-            Driver:
-              $ref: '#/definitions/Driver'
-            Constructor:
-              $ref: '#/definitions/Constructor'
-            grid:
-              type: string
-            laps:
-              type: string
-            status:
-              type: string
-            Time:
-              type: object
-              properties:
-                millis:
-                  type: string
-                time:
-                  type: string
-            FastestLap:
-              type: object
-              properties:
-                rank:
-                  type: string
-                lap:
-                  type: string
-                Time:
-                  type: object
-                  properties:
-                    time:
-                      type: string
-                AverageSpeed:
-                  type: object
-                  properties:
-                    units:
-                      type: string
-                    speed:
-                      type: string
+          $ref: '#/definitions/Result'
+  Result:
+    type: object
+    properties:
+      number:
+        type: string
+      position:
+        type: string
+      positionText:
+        type: string
+      points:
+        type: string
+      Driver:
+        $ref: '#/definitions/Driver'
+      Constructor:
+        $ref: '#/definitions/Constructor'
+      grid:
+        type: string
+      laps:
+        type: string
+      status:
+        type: string
+      Time:
+        type: object
+        properties:
+          millis:
+            type: string
+          time:
+            type: string
+      FastestLap:
+        type: object
+        properties:
+          rank:
+            type: string
+          lap:
+            type: string
+          Time:
+            type: object
+            properties:
+              time:
+                type: string
+          AverageSpeed:
+            type: object
+            properties:
+              units:
+                type: string
+              speed:
+                type: string
+
   Driver:
     type: object
     properties:
@@ -295,6 +348,7 @@ definitions:
         type: string
       nationality:
         type: string
+
   Constructor:
     type: object
     properties:
