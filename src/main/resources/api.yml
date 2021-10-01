@@ -1,0 +1,312 @@
+swagger: '2.0'
+info:
+  description: API para teste na seleção pra vaga de back-end na iCarros
+  version: 0.0.1
+  title: Teste Backend iCarros
+  contact:
+    email: mrlnrnn@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+paths:
+  /allData:
+    get:
+      tags:
+        - formula1
+        - races
+      summary: All races
+      operationId: getAllData
+      description: |
+        Returns all races from resource
+      responses:
+        '200':
+          description: Sucessful Request
+          schema:
+            $ref: '#/definitions/F1Resource'
+        '400':
+          description: Bad Input Parameter
+        '500':
+          description: Server Error
+
+  /races:
+    get:
+      tags:
+        - races
+      summary: All races
+      operationId: getAllRaces
+      description: |
+        Returns all races from resource
+      responses:
+        '200':
+          description: Sucessful Request
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Race'
+        '400':
+          description: Bad Input Parameter
+        '500':
+          description: Server Error
+
+  /drivers:
+    get:
+      tags:
+        - drivers
+      summary: All drivers
+      operationId: getAllDrivers
+      description: |
+        Returns all drivers from resource
+      parameters:
+        - in: query
+          name: nationality
+          type: string
+          allowEmptyValue: false
+          required: false
+        - in: query
+          name: name
+          type: string
+          allowEmptyValue: false
+          required: false
+        - in: query
+          name: code
+          type: string
+          allowEmptyValue: false
+          required: false
+      responses:
+        '200':
+          description: Sucessful Request
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Driver'
+        '400':
+          description: Bad Input Parameter
+        '500':
+          description: Server Error
+  /drivers/{driverId}:
+    get:
+      tags:
+        - drivers
+      summary: Searches for a driver by Id
+      operationId: getDriverById
+      description: |
+        By passing in the appropriate options, you can search for a driver
+      parameters:
+        - in: path
+          required: true
+          name: driverId
+          type: integer
+      responses:
+        '200':
+          description: search results matching criteria
+          schema:
+            $ref: '#/definitions/Driver'
+        '400':
+          description: bad input parameter
+        '500':
+          description: server error
+
+  /constructors:
+    get:
+      tags:
+        - constructors
+      summary: All races
+      operationId: getAllConstructors
+      description: |
+        Returns all consctructors from resource
+      parameters:
+        - in: query
+          name: name
+          type: string
+          required: false
+          allowEmptyValue: false
+        - in: query
+          name: nationality
+          type: string
+          required: false
+          allowEmptyValue: false
+
+      responses:
+        '200':
+          description: Sucessful Request
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Constructor'
+        '400':
+          description: Bad Input Parameter
+        '500':
+          description: Server Error
+
+  /constructors/{constructorId}:
+    get:
+      tags:
+        - constructors
+      summary: Searches for a constructor by Id
+      operationId: getConstructorById
+      description: |
+        By passing in the appropriate options, you can search for a constructor in the system
+      parameters:
+        - in: path
+          required: true
+          name: constructorId
+          type: integer
+      responses:
+        '200':
+          description: search results matching criteria
+          schema:
+            $ref: '#/definitions/Constructor'
+        '400':
+          description: bad input parameter
+        '500':
+          description: server error
+
+
+definitions:
+  F1Resource:
+    type: object
+    properties:
+      MRData:
+        type: object
+        properties:
+          xmlns:
+            type: string
+          series:
+            type: string
+          url:
+            type: string
+          limit:
+            type: string
+          offset:
+            type: string
+          total:
+            type: string
+          RaceTable:
+            type: object
+            properties:
+              season:
+                type: string
+              round:
+                type: string
+              Races:
+                type: array
+                items:
+                  $ref: '#/definitions/Race'
+  Race:
+    type: object
+    properties:
+      season:
+        type: string
+      round:
+        type: string
+      url:
+        type: string
+      raceName:
+        type: string
+      Circuit:
+        type: object
+        properties:
+          circuitId:
+            type: string
+          url:
+            type: string
+          circuitName:
+            type: string
+          Location:
+            type: object
+            properties:
+              lat:
+                type: string
+              long:
+                type: string
+              locality:
+                type: string
+              country:
+                type: string
+      date:
+        type: string
+      time:
+        type: string
+      Results:
+        type: array
+        items:
+          type: object
+          properties:
+            number:
+              type: string
+            position:
+              type: string
+            positionText:
+              type: string
+            points:
+              type: string
+            Driver:
+              $ref: '#/definitions/Driver'
+            Constructor:
+              $ref: '#/definitions/Constructor'
+            grid:
+              type: string
+            laps:
+              type: string
+            status:
+              type: string
+            Time:
+              type: object
+              properties:
+                millis:
+                  type: string
+                time:
+                  type: string
+            FastestLap:
+              type: object
+              properties:
+                rank:
+                  type: string
+                lap:
+                  type: string
+                Time:
+                  type: object
+                  properties:
+                    time:
+                      type: string
+                AverageSpeed:
+                  type: object
+                  properties:
+                    units:
+                      type: string
+                    speed:
+                      type: string
+  Driver:
+    type: object
+    properties:
+      driverId:
+        type: string
+      permanentNumber:
+        type: string
+      code:
+        type: string
+      url:
+        type: string
+      givenName:
+        type: string
+      familyName:
+        type: string
+      dateOfBirth:
+        type: string
+      nationality:
+        type: string
+  Constructor:
+    type: object
+    properties:
+      constructorId:
+        type: string
+      url:
+        type: string
+      name:
+        type: string
+      nationality:
+        type: string
+
+
+
+
