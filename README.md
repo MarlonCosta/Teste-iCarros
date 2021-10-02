@@ -6,14 +6,14 @@ Projeto para seleção de vaga de backend na iCarros, sendo desenvolvido em Java
 
 ## Desafios
 
-Os desafios de lógica se encontram no pacote [com.icarros.challenges](https://github.com/MarlonCosta/Teste-iCarros/tree/master/src/main/java/com/icarros/challenges)
+Os desafios de lógica (com exceção da API) se encontram no pacote [com.icarros.challenges](https://github.com/MarlonCosta/Teste-iCarros/tree/master/src/main/java/com/icarros/challenges)
 
 - [Questão 1 - Fizzing 'n buzzing](https://github.com/MarlonCosta/Teste-iCarros/blob/master/src/main/java/com/icarros/challenges/FizzingNBuzzing.java)
 - [Questão 2 - Angry Marvin Birds](https://github.com/MarlonCosta/Teste-iCarros/blob/master/src/main/java/com/icarros/challenges/AngryMavinBirds.java)
 - [Questão 3 - Creepy hours](https://github.com/MarlonCosta/Teste-iCarros/blob/master/src/main/java/com/icarros/challenges/CreepyHours.java)
 - [Questão 4 - We are the champions, my friend](https://github.com/MarlonCosta/Teste-iCarros/blob/master/src/main/java/com/icarros/challenges/WeAreTheChampions.java)
 - [Questão 5 - Venting the costs](https://github.com/MarlonCosta/Teste-iCarros/blob/master/src/main/java/com/icarros/challenges/VentingTheCosts.sql)
-- [Questão 6 - API descrita a seguir](https://github.com/MarlonCosta/Teste-iCarros/tree/master/src/main/java/com/icarros/formula1)
+- [Questão 6 - API descrita a seguir, código fonte neste link](https://github.com/MarlonCosta/Teste-iCarros/tree/master/src/main/java/com/icarros/formula1)
 - [Questão 7 – Robot](https://github.com/MarlonCosta/Teste-iCarros/blob/master/src/main/java/com/icarros/challenges/Robot.java)
 
 ## Execução da API
