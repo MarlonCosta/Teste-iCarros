@@ -22,7 +22,9 @@ Para executar a API, é possível utilizar o [Dockerfile](https://github.com/Mar
   ```docker build -t icarros-formula1 . && docker run -p 8080:8080 --name icarros-formula1 icarros-formula1```
   
   ou caso prefira rodar sem o uso do container, basta executar os comandos a seguir em ordem, na raiz do projeto:
+  
   ```mvn clean package```
+  
   ```java -jar ./target/formula1-0.0.1-SNAPSHOT.jar```
   
   Após a execução, na raiz da API (se utilizado o comando acima, estará localizada em [http://localhost:8080/](http://localhost:8080/)) temos a documentação da mesma, mostrando os endpoints no Swagger-UI.
