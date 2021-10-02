@@ -1,0 +1,1 @@
+SELECT OrderID, TotalPrice FROM HuttWarehouse WHERE CustomerName = 'DeathStar';
